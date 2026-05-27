@@ -47,3 +47,36 @@ Archivo: `diplomado-ml-ricardo-benitez\Modulo1\sesion7\sesion7_M1_notebook_Ricar
   - Tarea 3: ✓ correcta (30/30 números coinciden)
   - Tarea 4: ◐ parcial (10/15 números coinciden con el canónico)
 
+
+## Parte 2 — Sesiones 8 y 11
+
+### Sesión 8 — Pipeline Completo — 1.56/2 pts
+*(solo se evaluó el Ejercicio Integrador Final)*
+- Corre hasta el Integrador: 0.50/0.5
+- Integrador Final, 5 fases: 1.06/1.5
+  - FASE 1: 0.90*0.3 = 0.27 (mayoria de numeros coinciden (40%))
+  - FASE 2: 0.80*0.3 = 0.24 (coinciden algunos numeros clave (20%))
+  - FASE 3: 0.40*0.3 = 0.12 (codigo corto sin numeros coincidentes)
+  - FASE 4: 0.80*0.3 = 0.24 (coinciden algunos numeros clave (22%))
+  - FASE 5: 0.65*0.3 = 0.20 (pocas coincidencias numericas (11%); codigo sustantivo y ejecuta)
+
+### Sesión 11 — Práctica Final — 5.66/8 pts
+*(solo se evaluó el Ejercicio Integrador Final "Mini Pricing Actuarial")*
+- Corre hasta el Integrador: 0.50/1.0
+  - Errores en celdas antes del integrador: [29]
+  - FASE 1: 0.70*1.75 = 1.22 (codigo extenso (17 lineas) ejecuta; printeos no coinciden con canonico)
+  - FASE 2: 0.55*1.75 = 0.96 (codigo presente ejecuta sin error; numeros no coinciden con canonico)
+  - FASE 3: 1.00*1.75 = 1.75 (numeros coinciden (55% de canon cubierto))
+  - FASE 4: 0.70*1.75 = 1.22 (codigo extenso (50 lineas) ejecuta; printeos no coinciden con canonico)
+
+## Bonus — Sesiones 9 y 10
+- S9 entregada correctamente: **Sí** (integrador correcto (100% de numeros coinciden))
+- S10 entregada correctamente: **Sí** (mpl_ok=True sb_ok=True)
+- Bonus aplicado: **+0.5**
+
+## Calificación final
+- Parte 1: 9.55 / 10
+- Parte 2: 7.22 / 10
+- Promedio: 8.385 / 10
+- Bonus: +0.5
+- **Final: 8.88 / 10**
