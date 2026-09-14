@@ -34,15 +34,15 @@
 | (5, 10] | 1.9009 | 1.8284 | 1.9763 | 0 | 0.1912 |
 
 **P1.** ¿Se cumple la equidispersión? Justifica con φ **y** con Cameron-Trivedi, y di qué familia usarías.
-**Tu respuesta:**
+**Tu respuesta:** Los resultados muestran una ligera sobredispersión, ya que φ de Pearson es 1.1664, valor superior a 1. Además, la prueba de Cameron-Trivedi presenta α = 0.0744 y un p-value prácticamente nulo, por lo que existe evidencia estadística para rechazar la equidispersión. Sin embargo, al ser φ menor a 1.5, la desviación no es severa y utilizaría un modelo QuasiPoisson para ajustar la estimación de la variabilidad.
 
 **P2.** Interpreta los rating factors de tu variable: nivel más alto y más bajo, traducidos a % de
 recargo/descuento. ¿Algún IC cruza 1 o tiene p > 0.05? ¿Qué harías con ese nivel?
-**Tu respuesta:**
+**Tu respuesta:** Se observa que la frecuencia de siniestros aumenta conforme se avanza en los niveles de nivel_bonus_cat. El grupo (10,25] alcanza el RF más alto, 2.6544, lo que representa una frecuencia 165.4% mayor que la categoría de referencia (-1,0], cuyo RF es 1. Todos los intervalos de confianza de las categorías restantes se encuentran por encima de 1 y sus p-values son menores a 0.05, por lo que conservaría la segmentación actual.
 
 **P3.** ¿Por qué el GLM one-way reproduce exactamente la tasa empírica, y qué aporta el GLM que una
 tabla empírica no puede dar?
-**Tu respuesta:**
+**Tu respuesta:** El modelo one-way coincide con la tasa observada porque, dentro de cada categoría, el ajuste Poisson con liga log y offset equilibra el número total de siniestros estimados con los observados, obteniendo así la relación Σn/Σe. La ventaja de utilizar un GLM aparece al extender el análisis: permite incorporar simultáneamente diferentes factores de riesgo, cuantificar su efecto multiplicativo y evaluar estadísticamente la incertidumbre de sus estimaciones.
 
 ---
 
@@ -68,15 +68,15 @@ tabla empírica no puede dar?
 
 **P4.** ¿Por qué se usa **Gamma** para severidad y no una regresión lineal sobre log(Y)? (menciona la
 propiedad del CV y por qué Lognormal no es GLM).
-**Tu respuesta:**
+**Tu respuesta:** La distribución Gamma resulta apropiada para modelar severidad porque trabaja con valores positivos y supone una variabilidad relativa aproximadamente constante mediante su CV. En cambio, aplicar una regresión a log(Y) implicaría estimar E[log(Y)] en lugar del costo esperado E[Y], haciendo necesaria una corrección al regresar a la escala monetaria. Además, la Lognormal no pertenece a la familia exponencial natural requerida en este planteamiento GLM; Gamma con liga log permite estimar directamente la severidad media.
 
 **P5.** Según la tabla de comparación, ¿qué modelo elegirías? Justifica con AIC/BIC. ¿Por qué el pseudo R²
 es tan bajo y eso NO significa que el modelo sea malo?
-**Tu respuesta:**
+**Tu respuesta:** Entre las dos alternativas elegiría la Binomial Negativa, pues presenta mejores criterios de información: su AIC es 124,925.7 frente a 125,081.7 del Poisson y su BIC es 125,105.8 frente a 125,261.7. Aunque el pseudo R² es cercano a 0.02, esto no implica necesariamente un ajuste deficiente, ya que la ocurrencia de siniestros contiene una importante componente aleatoria. Por ello, conviene valorar también la comparación relativa entre modelos y su capacidad de discriminación.
 
 **P6.** Compara tus rating factors de frecuencia (Parte 1) con los de severidad para `nivel_bonus_cat`. ¿Apuntan en
 la misma dirección? ¿Qué implica eso para separar Frecuencia × Severidad?
-**Tu respuesta:**
+**Tu respuesta:** nivel_bonus_cat influye en ambos componentes del riesgo, aunque no con la misma intensidad. Para el nivel (10,25], por ejemplo, la frecuencia alcanza un RF de 2.6544, mientras que en severidad el RF es 1.1708. Esto indica que los niveles altos están relacionados principalmente con una mayor ocurrencia de siniestros, mientras que el incremento en su costo promedio es más moderado. Esta diferencia respalda estimar frecuencia y severidad mediante modelos separados antes de combinarlos en la prima pura.
 
 ---
 
@@ -102,15 +102,15 @@ la misma dirección? ¿Qué implica eso para separar Frecuencia × Severidad?
 
 **P7.** Interpreta las métricas de validación: ¿el modelo está bien calibrado (ratio pred/obs)? ¿discrimina
 bien el riesgo (Gini)? ¿Qué mide cada una?
-**Tu respuesta:**
+**Tu respuesta:** El ratio predicho/observado de 1.0249 indica una buena calibración agregada, pues las predicciones son aproximadamente 2.5% superiores a lo realmente observado. Por otro lado, el Gini de 0.2315 muestra una capacidad de discriminación limitada, al encontrarse por debajo de la referencia de 0.30. En otras palabras, el modelo estima adecuadamente el volumen global de siniestros, pero tiene menor capacidad para ordenar individualmente los riesgos desde los más bajos hasta los más altos.
 
 **P8.** Lee la tabla de tarifa: ¿qué nivel de tu variable paga la prima pura más alta y cuál la más baja?
 Traduce el factor de tarifa a un recargo/descuento sobre la prima promedio.
-**Tu respuesta:**
+**Tu respuesta:** El nivel (10,25] genera la prima pura más elevada, con $373.60 y un factor tarifario de 2.0489, equivalente a un recargo de 104.9% sobre la prima promedio. En el extremo contrario se encuentra (-1,0], con una prima pura de $118.65 y factor 0.6507, equivalente a un descuento de 34.9%. Esto muestra que el nivel bonus-malus produce una diferenciación importante en el costo esperado del riesgo.
 
 **P9. (Conclusión de nota técnica).** En 3–4 líneas, redacta cómo `nivel_bonus_cat` afecta la tarifa, integrando
 frecuencia, severidad y prima pura, en estilo defendible ante la CNSF.
-**Tu respuesta:**
+**Tu respuesta:** Los resultados respaldan el uso de nivel_bonus_cat como variable de tarificación, debido a que los niveles más altos presentan un incremento consistente del riesgo. El efecto es particularmente importante en frecuencia: (10,25] alcanza un RF de 2.6544 (IC 95%: 2.5358–2.7785), mientras que su RF de severidad es 1.1708. La combinación de ambos efectos produce una prima pura de $373.60, evidenciando una diferenciación actuarial relevante entre los niveles.
 
 ---
 *Evaluación generada automáticamente · Diplomado ML en Seguros · FC UNAM · Módulo 4 · Tema 2*
