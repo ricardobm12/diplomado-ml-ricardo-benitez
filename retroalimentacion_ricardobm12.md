@@ -80,3 +80,31 @@ Archivo: `diplomado-ml-ricardo-benitez\Modulo1\sesion7\sesion7_M1_notebook_Ricar
 - Promedio: 8.385 / 10
 - Bonus: +0.5
 - **Final: 8.88 / 10**
+
+---
+
+# Retroalimentación — Módulo 4 · Tema 2 (GLM con Python)
+
+**Alumno:** Ricardo Antonio Benitez Mota
+**Variable asignada:** `nivel_bonus_cat`
+
+## Desglose por pregunta
+
+| Pregunta | Pts | Comentario |
+|---|---|---|
+| P1 | 10/10 | Justificación completa y bien conectada con la magnitud: φ=1.1664>1, Cameron-Trivedi rechaza equidispersión, y explícitamente razona que al ser φ<1.5 "la desviación no es severa" y por eso elige QuasiPoisson. |
+| P2 | 7/10 | Identifica correctamente el nivel de mayor riesgo, (10,25] con RF=2.6544 (+165.4%, cálculo correcto), y revisa bien la significancia de todos los niveles. Sin embargo, no identifica explícitamente cuál es el nivel de **menor** riesgo (fuera de la referencia) ni lo traduce a %, que la pregunta pide de forma explícita. |
+| P3 | 10/10 | Explicación correcta y completa: ecuaciones de score con offset que igualan siniestros predichos y observados (Σn/Σe), y buen resumen de la ventaja del GLM (multivariable, efecto multiplicativo, incertidumbre estadística). |
+| P4 | 10/10 | Explicación técnica correcta y completa: CV constante, corrección de sesgo al modelar log(Y), Lognormal fuera de la familia exponencial natural. |
+| P5 | 10/10 | Elección correcta de Binomial Negativa con AIC/BIC bien citados y explicación acertada del pseudo R² bajo, mencionando también la importancia de la capacidad de discriminación. |
+| P6 | 9/10 | Buena comparación cuantitativa: RF frecuencia 2.6544 vs RF severidad 1.1708 para (10,25], correctamente interpretado como "misma dirección pero distinta intensidad" — un matiz más preciso que solo decir "misma/distinta dirección", y bien conectado con la justificación de separar Frecuencia×Severidad. |
+| P7 | 10/10 | Distingue con precisión calibración (ratio 1.0249) de discriminación (Gini 0.2315), interpretación correcta y completa. |
+| P8 | 10/10 | Identificación y cálculos correctos: (10,25] prima más alta ($373.60, factor 2.0489=+104.9%), (-1,0] prima más baja ($118.65, factor 0.6507=−34.9%). |
+| P9 | 10/10 | Excelente síntesis: integra RF de frecuencia con su intervalo de confianza (2.5358–2.7785), RF de severidad y prima pura final, con lenguaje técnico defendible ante la CNSF. |
+
+## Redacción: 9/10
+
+## Nota final: 95/100 (calificación: 9.5/10)
+
+## Comentarios generales
+Entrega muy sólida: manejas con precisión los conceptos de sobredispersión, comparación de modelos, calibración/discriminación y tarifa, siempre citando tus propios números de `nivel_bonus_cat` sin errores conceptuales. Destaca especialmente P6 y P9 por el nivel de detalle cuantitativo. El único punto a mejorar es P2: te faltó identificar explícitamente el nivel de **menor** riesgo (no solo el de mayor) y traducirlo a porcentaje, tal como pedía la pregunta.
